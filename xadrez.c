@@ -61,6 +61,24 @@ int main() {
     } while (casasRestantes > 0);
     printf("\n");
 
+    // Movimento do Cavalo
+    printf("Movimento do Cavalo:\n");
+    // Definindo o número de movimentos nas direções específicas
+    const int movimentosParaBaixo = 2;
+    const int movimentosParaEsquerda = 1;
+
+    // Loop externo: movimento para baixo (obrigatoriamente um 'for')
+    for (int i = 0; i < movimentosParaBaixo; i++) {
+        printf("Baixo\n");
+    }
+
+    // Loop interno: movimento para esquerda (obrigatoriamente um 'while')
+    int contadorEsquerda = 0;
+    while (contadorEsquerda < movimentosParaEsquerda) {
+        printf("Esquerda\n");
+        contadorEsquerda++;
+    }
+
 
     return 0;
 }
