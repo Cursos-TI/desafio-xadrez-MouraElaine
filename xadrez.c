@@ -4,7 +4,7 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
-int main() {
+
     // Nível Novato - Movimentação das Peças
     // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
 
@@ -28,57 +28,72 @@ int main() {
     // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
     // Inclua o uso de continue e break dentro dos loops.
 
+#include <stdio.h>
+
 // Número de casas que cada peça irá se mover
-    const int casasTorre = 5;
-    const int casasBispo = 5;
-    const int casasRainha = 8;
+const int casasTorre = 5;
+const int casasBispo = 5;
+const int casasRainha = 8;
 
-    // Movimento da Torre (usando for)
-    // A Torre move-se horizontalmente para a direita
-    printf("Movimento da Torre:\n");
-    for (int i = 1; i <= casasTorre; i++) {
-        printf("Casa %d: Direita\n", i);
+// ------------------ TORRE ------------------
+void moverTorre(int passo, int limite) {
+    if (passo > limite) return;
+    printf("Casa %d: Direita\n", passo);
+    moverTorre(passo + 1, limite);
+}
+
+// ------------------ BISPO ------------------
+void moverBispo(int passo, int limite) {
+    if (passo > limite) return;
+    for (int v = 0; v < 1; v++) {
+        for (int h = 0; h < 1; h++) {
+            printf("Casa %d: Cima, Direita\n", passo);
+        }
     }
-    printf("\n");
+    moverBispo(passo + 1, limite);
+}
 
-    // Movimento do Bispo (usando while)
-    // O Bispo move-se na diagonal para cima e à direita
-    printf("Movimento do Bispo:\n");
-    int casasMovidas = 1;
-    while (casasMovidas <= casasBispo) {
-        printf("Casa %d: Cima, Direita\n", casasMovidas);
-        casasMovidas++;
-    }
-    printf("\n");
+// ------------------ RAINHA ------------------
+void moverRainha(int passo, int limite) {
+    if (passo > limite) return;
+    printf("Casa %d: Esquerda\n", passo);
+    moverRainha(passo + 1, limite);
+}
 
-    // Movimento da Rainha (usando do-while)
-    // A Rainha move-se para a esquerda
-    printf("Movimento da Rainha:\n");
-    int casasRestantes = casasRainha;
-    do {
-        printf("Casa %d: Esquerda\n", casasRainha - casasRestantes + 1);
-        casasRestantes--;
-    } while (casasRestantes > 0);
-    printf("\n");
-
-    // Movimento do Cavalo
+// ------------------ CAVALO ------------------
+void moverCavalo() {
     printf("Movimento do Cavalo:\n");
-    // Definindo o número de movimentos nas direções específicas
-    const int movimentosParaBaixo = 2;
-    const int movimentosParaEsquerda = 1;
+    const int maxVertical = 2;
+    const int maxHorizontal = 1;
 
-    // Loop externo: movimento para baixo (obrigatoriamente um 'for')
-    for (int i = 0; i < movimentosParaBaixo; i++) {
-        printf("Baixo\n");
+    for (int i = 0; i < maxVertical + 2; i++) {
+        if (i >= maxVertical) break;
+        printf("Cima\n");
+
+        for (int j = 0; j < maxHorizontal + 2; j++) {
+            if (j >= maxHorizontal) break;
+            if (i == 1 && j == 0) continue;
+            printf("Direita\n");
+        }
     }
+    printf("\n");
+}
 
-    // Loop interno: movimento para esquerda (obrigatoriamente um 'while')
-    int contadorEsquerda = 0;
-    while (contadorEsquerda < movimentosParaEsquerda) {
-        printf("Esquerda\n");
-        contadorEsquerda++;
-    }
+// ------------------ MAIN ------------------
+int main() {
+    printf("Movimento da Torre:\n");
+    moverTorre(1, casasTorre);
+    printf("\n");
 
+    printf("Movimento do Bispo:\n");
+    moverBispo(1, casasBispo);
+    printf("\n");
+
+    printf("Movimento da Rainha:\n");
+    moverRainha(1, casasRainha);
+    printf("\n");
+
+    moverCavalo();
 
     return 0;
 }
