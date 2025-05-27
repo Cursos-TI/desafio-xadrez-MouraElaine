@@ -28,5 +28,39 @@ int main() {
     // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
     // Inclua o uso de continue e break dentro dos loops.
 
+// Número de casas que cada peça irá se mover
+    const int casasTorre = 5;
+    const int casasBispo = 5;
+    const int casasRainha = 8;
+
+    // Movimento da Torre (usando for)
+    // A Torre move-se horizontalmente para a direita
+    printf("Movimento da Torre:\n");
+    for (int i = 1; i <= casasTorre; i++) {
+        printf("Casa %d: Direita\n", i);
+    }
+    printf("\n");
+
+    // Movimento do Bispo (usando while)
+    // O Bispo move-se na diagonal para cima e à direita
+    printf("Movimento do Bispo:\n");
+    int casasMovidas = 1;
+    while (casasMovidas <= casasBispo) {
+        printf("Casa %d: Cima, Direita\n", casasMovidas);
+        casasMovidas++;
+    }
+    printf("\n");
+
+    // Movimento da Rainha (usando do-while)
+    // A Rainha move-se para a esquerda
+    printf("Movimento da Rainha:\n");
+    int casasRestantes = casasRainha;
+    do {
+        printf("Casa %d: Esquerda\n", casasRainha - casasRestantes + 1);
+        casasRestantes--;
+    } while (casasRestantes > 0);
+    printf("\n");
+
+
     return 0;
 }
